@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create Customer</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		
+		}
+		form 
+		{
+			background-color: linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.85)),url(../img/t1.jpg);
+			border-radius: 5px;
+			padding: 20px;
+			width: 500px;
+			height:680px;
+			margin: 0 auto;
+			margin-top: -10px;
+			box-shadow: 0px 0px 10px 0px #aaa;
+			
+		}
+		
+		input[type=text], input[type=password], input[type=email] {
+			width: 100%;
+			height: 40px;
+			padding: 12px 15px;
+			margin: 0px 0;
+			box-sizing: border-box;
+			border: 2px solid #ccc;
+			border-radius: 10px;
+			font-size: 15px;
+		}
+		button 
+		{
+			background-color:orange;
+			color: #fff;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 100px;
+			font-family: "Raleway", sans-serif;
+      text-transform: uppercase;
+	  font-weight: 400;
+	  font-size: 14px;
+	  letter-spacing: 1px;
+	  display: inline-block;
+	  padding: 12px 40px;
+	  border-radius: 50px;
+	  transition: 0.5s;
+			cursor: pointer;
+			font-size: 16px;
+			width: 100%;
+			color: black;
+		}
+ 		button:hover 
+ 		{ 
+ 			background-color: black; 
+ 			font-weight: bold; 
+ 			color: white;
+ 			font-size: 16px;	
+ 		} 
+		.banner{
+			width:100%;
+			height:auto;
+			background: linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.85)),url(../img/t1.jpg);
+			background-size:cover;
+			color:white;
+		}
+		.test
+		{
+		    margin-bottom:100px;
+		}
+		.btn:hover {
+			background-color:orange;
+			font-weight:bold;
+		}
+		.close{
+		   color: white;
+		   
+         }
+         close:hover
+         {
+           background-color: orange;
+         }
+	</style>
+<script>
+	function calculateDateDiffAndFee() {
+			// Get the date values from the input fields
+			
+	        var d1=document.getElementById("startDate").value;
+	        var d2=document.getElementById("endDate").value;
+			var startDate = new Date(d1);
+			var endDate = new Date(d2);
+			
+			// check whether room number bednumber is matching or not
+			
+			var roomNumber=document.getElementById("roomNumber").value;
+			var bedId=document.getElementById("bedId").value;
+			//document.writeln(roomNumber);
+	        //document.writeln(bedId);
+			var temp=(roomNumber*10)+1;
+			// document.getElementById("sub-mit").setAttribute("disabled");
+
+		
+		if(endDate>=startDate  && bedId>=temp && bedId<=(temp+3))
+		{
+
+				// Calculate the difference between the two dates in milliseconds
+				var diffInMilliSeconds = endDate.getTime() - startDate.getTime();
+	
+				// Convert the difference to days
+				var diffInDays = diffInMilliSeconds / (1000 * 60 * 60 * 24);
+
+			    // Round the result to the nearest integer
+				diffInDays = Math.round(diffInDays);
+	            document.getElementById("endDate").style.borderColor="white";
+	            document.getElementById("endDate").style.backgroundColor="white";
+	            document.getElementById("bedId").style.borderColor="white";
+	            document.getElementById("bedId").style.backgroundColor="white";
+	            document.getElementById("sub-mit").removeAttribute("disabled");
+			if(roomNumber>=101 && roomNumber<=105)
+			{
+				var fee=14000;
+				var totalAmount=(fee/30)*diffInDays;
+				totalAmount=Math.round(totalAmount);
+	
+				document.getElementById("amount").style.color="blue";
+                document.getElementById("amount").style.fontWeight="bold";
+				document.getElementById("amount").innerHTML = "₹ "+totalAmount+".00";
+			}
+			else if(roomNumber>=201 && roomNumber<=205)
+			{
+				var fee=10000;
+				var totalAmount=(fee/30)*diffInDays;
+				totalAmount=Math.round(totalAmount);
+				document.getElementById("amount").style.fontWeight="bold";
+				document.getElementById("amount").style.color="blue";
+				document.getElementById("amount").innerHTML = "₹ "+totalAmount+".00";
+			}
+			else if(roomNumber>=301 && roomNumber<=305)
+			{
+				var fee=8000;
+				var totalAmount=(fee/30)*diffInDays;
+				totalAmount=Math.round(totalAmount);
+				document.getElementById("amount").style.fontWeight="bold";
+				document.getElementById("amount").style.color="blue";
+                document.getElementById("amount").innerHTML = "₹ "+totalAmount+".00";
+			}
+			else
+			{
+				var fee=6000;
+				var totalAmount=(fee/30)*diffInDays;
+				totalAmount=Math.round(totalAmount);
+				document.getElementById("amount").style.fontWeight="bold";
+				document.getElementById("amount").style.color="blue";
+
+				document.getElementById("amount").innerHTML = "₹ "+totalAmount+".00";
+			}
+			    
+	     }
+	     if(endDate<startDate)
+	     {
+			 document.getElementById("endDate").style.borderColor="red";
+             document.getElementById("endDate").style.backgroundColor="red";
+             document.getElementById("endDate").style.color="black";
+			 document.getElementById("sub-mit").setAttribute("disabled");
+		 }
+	     else
+	     {
+	    	 document.getElementById("endDate").style.borderColor="white";
+             document.getElementById("endDate").style.backgroundColor="white";
+             document.getElementById("endDate").style.color="black";
+			 document.getElementById("sub-mit").removeAttribute("disabled");
+	    	 
+	      }
+	      if(bedId<temp || bedId>=(temp+3))
+		  {
+			 document.getElementById("bedId").style.borderColor="red";
+			 document.getElementById("bedId").style.backgroundColor="red"; 
+			 document.getElementById("bedId").style.color="black";
+			 document.getElementById("sub-mit").setAttribute("disabled");
+		  }
+	     else
+	      {
+	    	 document.getElementById("bedId").style.borderColor="white";
+	    	 document.getElementById("bedId").style.color="black";
+			 document.getElementById("bedId").style.backgroundColor="white"; 
+	    	 
+	      }
+		  // to check entered amount is valid or not
+		 var amountCheck=document.getElementById("amount-check").value;
+		 if(amountCheck>totalAmount || amountCheck<1)
+		 {
+			 document.getElementById("amount-check").style.borderColor="red";
+			 document.getElementById("amount-check").style.outlineColor="red";
+			 document.getElementById("amount-check").style.color="red";
+			 document.getElementById("sub-mit").setAttribute("disabled");
+		 }
+		 else
+		 {
+			document.getElementById("amount-check").style.borderColor="white";
+	        document.getElementById("amount-check").style.color="black";
+			document.getElementById("sub-mit").removeAttribute("disabled");
+		 } 
+	}
+</script>
+	
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ <link rel="stylesheet" th:href="@{/css/style.css}"/>
+ <div th:replace="base2 :: nav"></div>
+</head>
+<body>
+    <section class="banner ">
+    <br />
+    <br />
+  <form  th:action="@{/cust/createCustomer/}"   method="post">
+  
+	  <h2 style="color: orange;">Create Customer  
+	            <span class="close"><a href="" th:href="@{/cust/getGetHomeInfo}" style="color:#fff" class="close" >x</a></span>
+	  </h2>    
+	    
+  <div class="form-row">
+  
+	      <div class="form-group col-md-6">
+		      <label >Customer Name</label>
+		      <input type="text" class="form-control" id="inputName" placeholder="Enter your name" name="customerName" required>
+	     </div>
+	     
+	     <div class="form-group col-md-6">
+		      <label >Email</label>
+		      <input type="email" class="form-control" id="inputName" placeholder="Enter your email id" name="email"  required>
+	     </div>   
+   </div>
+   
+    <div class="form-row">
+	    <div class="form-group col-md-6">
+		      <label >MobileNumber</label>
+		      <input type="tel" class="form-control" id="inputName" placeholder="Enter mobile number"  pattern="[6789][0-9]{9}" title="Please Valid 10 digit mobile number" name="mobileNumber" required>
+	    </div>
+	    
+	    <div class="form-group col-md-6">
+		      <label >Aadhar Number</label>
+		      <input type="number" class="form-control" id="inputName" placeholder="Enter Aadhar number"  required name="adharNumber"  pattern="[0-9]{12}">
+	    </div>
+    </div>
+  
+  
+    <div class="form-row">
+    
+	    <div class="form-group col-md-5">
+	      <label for="inputCity">Address</label>
+	      <input  class="form-control" id="inputCity"  required placeholder="Enter Your city" name="city" type="text">
+	    </div>
+	    
+    <div class="form-group col-4">
+    
+	      <label for="inputState">State</label>
+	      <select id="inputName" class="form-control"  required name="state" type="text">
+		      <option selected>Choose...</option>
+		      <option value="Andhra Pradesh">Andhra Pradesh</option>
+			  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+			  <option value="Assam">Assam</option>
+			  <option value="Bihar">Bihar</option>
+			  <option value="Chhattisgarh">Chhattisgarh</option>
+			  <option value="Goa">Goa</option>
+			  <option value="Gujarat">Gujarat</option>
+			  <option value="Haryana">Haryana</option>
+			  <option value="Himachal Pradesh">Himachal Pradesh</option>
+			  <option value="Jharkhand">Jharkhand</option>
+			  <option value="Karnataka">Karnataka</option>
+			  <option value="Kerala">Kerala</option>
+			  <option value="Madhya Pradesh">Madhya Pradesh</option>
+			  <option value="Maharashtra">Maharashtra</option>
+			  <option value="Manipur">Manipur</option>
+			  <option value="Meghalaya">Meghalaya</option>
+			  <option value="Mizoram">Mizoram</option>
+			  <option value="Nagaland">Nagaland</option>
+			  <option value="Odisha">Odisha</option>
+			  <option value="Punjab">Punjab</option>
+			  <option value="Rajasthan">Rajasthan</option>
+			  <option value="Sikkim">Sikkim</option>
+			  <option value="Tamil Nadu">Tamil Nadu</option>
+			  <option value="Telangana">Telangana</option>
+			  <option value="Tripura">Tripura</option>
+			  <option value="Uttar Pradesh">Uttar Pradesh</option>
+			  <option value="Uttarakhand">Uttarakhand</option>
+			  <option value="West Bengal">West Bengal</option>
+			  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+			  <option value="Chandigarh">Chandigarh</option>
+			  <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+			  <option value="Delhi">Delhi</option>
+			  <option value="Lakshadweep">Lakshadweep</option>
+			  <option value="Puducherry">Puducherry</option>
+	      </select>
+    </div>
+    
+    <div class="form-group col-md-3">
+	      <label for="inputZip">Zip</label>
+	      <input type="number" class="form-control" id="inputZip"  required placeholder="Pincode" name="pincode">
+    </div>
+    
+  </div>
+   
+    <div class="form-group">
+    <label for="inputAddress">Purpose</label>
+    <input  class="form-control" id="inputAddress" placeholder="ex:studying" name="purpose" type="text">
+  </div>
+  
+ <div class="form-row">
+    
+	    <div class="form-group col-md-6">
+	      <label >Joining Date</label>
+	      <input type="date" class="form-control" id="startDate" name="joinDate" required>
+	    </div>
+	    <div class="form-group col-md-6">
+	      <label >End Date</label>
+	      <input type="date" class="form-control" id="endDate" required name="endDate">
+	    </div>
+    </div>
+    
+    <div class="form-row">
+    
+	   
+	    <div class="form-group col-md-3">
+	     <label >Room Number</label> 
+	     <select id="roomNumber" class="form-control"  required name="roomNumber" type="number">
+	        <option selected>Choose...</option>
+	        <option value="101">101</option>
+	        <option value="102">102</option>
+	        <option value="103">103</option>
+	        <option value="104">104</option>
+	        <option value="105">105</option>
+	        <option value="201">201</option>
+	        <option value="202">202</option>
+	        <option value="203">203</option>
+	        <option value="204">204</option>
+	        <option value="205">205</option>
+	        <option value="301">301</option>
+	        <option value="302">302</option>
+	        <option value="303">303</option>
+	        <option value="304">304</option>
+	        <option value="305">305</option>
+	        <option value="401">401</option>
+	        <option value="402">402</option>
+	        <option value="403">403</option>
+	        <option value="404">404</option>
+	        <option value="405">405</option>
+	        <option value="501">501</option>
+	        <option value="502">502</option>
+	        <option value="503">503</option>
+	        <option value="504">504</option>
+	        <option value="505">505</option>  
+      </select>
+   
+	    </div>
+	    <div class="form-group col-md-3">
+	      <label >Bed Number</label>
+	     <select id="bedId" class="form-control"  required name="bedId" type="number"  >
+        <option selected>Choose...</option>
+         <option value="1011">1011</option>
+        
+        <option value="1021">1021</option>
+         
+        <option value="1031">1031</option>
+       
+         <option value="1041">1041</option>
+         
+          <option value="1051">1051</option>
+          
+          <option value="2011">2011</option>
+           <option value="2012">2012</option>
+           
+        <option value="2021">2021</option>
+         <option value="2022">2022</option>
+         
+        <option value="2031">2031</option>
+         <option value="2032">2032</option>
+         
+        <option value="2041">2041</option>
+         <option value="2042">2042</option>
+         
+         <option value="2051">2051</option>
+         <option value="2052">2052</option>
+         
+          <option value="3011">3011</option>
+          <option value="3012">3012</option>
+          <option value="3013">3013</option>
+          
+          <option value="3021">3021</option>
+            <option value="3022">3022</option>
+              <option value="3023">3023</option>
+              
+        <option value="3031">3031</option>
+        <option value="3032">3032</option>
+        <option value="3033">3033</option>
+        
+         <option value="3041">3041</option>
+         <option value="3042">3042</option>
+          <option value="3043">3043</option>
+        
+          <option value="3051">3051</option>
+          <option value="3052">3052</option>
+          <option value="3053">3053</option>
+           
+          <option value="4011">4011</option>
+          <option value="4012">4012</option>
+          <option value="4013">4013</option>
+          <option value="4014">4014</option>
+          
+          <option value="4021">4021</option>
+          <option value="4022">4022</option>
+          <option value="4023">4023</option>
+          <option value="4024">4024</option>
+          
+           
+          <option value="4031">4031</option>
+          <option value="4032">4032</option>
+          <option value="4033">4033</option>
+          <option value="4034">4034</option>
+          
+          <option value="4041">4041</option>
+          <option value="4042">4042</option>
+          <option value="4043">4043</option>
+          <option value="4044">4044</option>
+          
+          <option value="4051">4051</option>
+          <option value="4052">4052</option>
+          <option value="4053">4053</option>
+          <option value="4054">4054</option>
+          
+          <option value="5011">5011</option>
+          <option value="5012">5012</option>
+          <option value="5013">5013</option>
+          <option value="5014">5014</option>
+          
+          <option value="5021">5021</option>
+          <option value="5022">5022</option>
+          <option value="5023">5023</option>
+          <option value="5024">5024</option>
+             
+          <option value="5031">5031</option>
+          <option value="5032">5032</option>
+          <option value="5033">5033</option>
+          <option value="5034">5034</option>
+             
+          <option value="5041">5041</option>
+          <option value="5042">5042</option>
+          <option value="5043">5043</option>
+          <option value="5044">5044</option>
+             
+          <option value="5051">5051</option>
+          <option value="5051">5052</option>
+          <option value="5053">5053</option>
+          <option value="5054">5054</option>
+	  
+      </select>
+   
+	    </div>
+	     <div class="form-group col-md-6" id="div1">
+	      <label >Amount</label> &nbsp;&nbsp;&nbsp;<label id="amount"></label>
+	      <input type="number" class="form-control"  required name="paidAmount" onkeyup="calculateDateDiffAndFee()" id="amount-check" >
+	    </div>
+    </div>
+    
+       
+       <div>
+       <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="form-group col-md-5" id="sub-mit" disabled onblur="calculateDateDiffAndFee()">Add Student</button>
+        &nbsp;
+        <button type="reset" class="form-group col-md-5" >Reset</button>
+        </div>
+        
+</form>
+<!--        <script src="@{/js/AmounAndRoomNumberValidation.js}"></script> -->
+	 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+    
+    </section>
+       <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Vamshi</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/ -->
+        Managed by <a href="https://bootstrapmade.com/">Admin</a>
+      </div>
+    </div>
+  </footer>
+   <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+</body>
+</html>

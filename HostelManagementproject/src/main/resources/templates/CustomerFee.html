@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Get Customer Fee</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		
+		}
+		
+		form {
+			background-color: linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.85)),url(../img/t1.jpg);
+			border-radius: 5px;
+			padding: 20px;
+			width: 420px;
+			height:400px;
+			margin: 0 auto;
+			margin-top: 80px;
+			box-shadow: 0px 0px 10px 0px #aaa;
+			
+		}
+		
+		input[type=date] {
+			width:100%;
+			height: 42px;
+			padding: 12px 15px;
+			margin: 0px 0;
+			box-sizing: border-box;
+			border: 2px solid #ccc;
+			border-radius: 10px;
+			font-size: 15px;
+		}
+		
+		button {
+			background-color: black;
+			color: #fff;
+			padding: 12px 20px;
+			border-radius: 50px;
+			border: none;
+			
+			cursor: pointer;
+			font-size: 16px;
+			width: 100%;
+			
+			  font-family: "Raleway", sans-serif;
+		      text-transform: uppercase;
+			  letter-spacing: 1px;
+			  display: inline-block;
+			  padding: 12px 40px;
+			  transition: 0.75s;
+			  margin-top: px;
+			   color: #fff;
+		}
+		
+ 		button:hover { 
+ 			background-color:  #34b7a7; 
+ 			font-weight: bold; 
+ 			color: white;
+ 			font-size: 16px;
+ 			
+ 			
+ 		} 
+		.banner{
+			width:100%;
+			height:auto;
+			background: linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.85)),url(../img/t1.jpg);
+			background-size:cover;
+			color:white;
+		}
+		.test
+		{
+		    margin-bottom:100px;
+		}
+		.btn:hover {
+			background-color:orange;
+			font-weight:bold;
+		}
+		.close{
+		   color: white;
+		   
+         }
+         close:hover
+         {
+           background-color: orange;
+         }
+         #roomNumber
+         {
+            width:200px;
+            margin-left:100px;
+         }
+          #div1, #div2
+         {
+           color:red;
+           border-color: red;
+           height: 50px;
+           
+           
+         }
+         
+	</style>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	    <link rel="stylesheet" th:href="@{/css/style.css}" />
+	     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"></link>
+	    
+	    
+	    <div th:replace="base2 :: nav"></div>
+</head>
+<body>
+    <section class="banner ">
+     
+   
+    <br />
+    <br />
+    <br />
+  <form th:action="@{/cust/getCustomerFeeByDate}" method="post">
+  <center><h3 style="color:white;">Customer Fee Details<span class="close"><a href="" th:href="@{/cust/getGetHomeInfo}" style="color:#fff" class="close" >x</a></span></h3></center>
+
+  <br />
+
+    <center><h2><i class="fa-solid fa-users fa-fade fa-2xl" style="color: orange"></i></h2></center>
+	   
+
+
+
+    
+       
+       <br />
+        <div th:if="${dummyerror}" class="alert alert-error" id="div1">
+		  
+		 	 <marquee><h5>No Customer Found..!!</h5></marquee>
+		 </div>
+		 
+        <div class="input-group mb-3">
+  
+  
+       <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Select Date</span>
+  </div>
+  <input type="date" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" name="endDate"  required="required"  >
+</div>
+       
+  
+  
+</div>
+ 
+	    </div>
+	     </div>
+	     
+	     <br />
+	    
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <button  type="submit" class="form-group col-md-5" id="sub-mit"  onclick="check()">Get</button>
+       
+        <button type="reset" class="form-group col-md-5">Reset</button>
+     
+        
+</form>
+<!--        <script src="@{/js/AmounAndRoomNumberValidation.js}"></script> -->
+	 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+<!--       -->
+    </section>
+       <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Vamshi</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/ -->
+        Managed by <a href="https://bootstrapmade.com/">Admin</a>
+      </div>
+    </div>
+  </footer>
+   <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+</body>
+</html>

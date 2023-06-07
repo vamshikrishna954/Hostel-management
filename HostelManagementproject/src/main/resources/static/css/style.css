@@ -1,0 +1,56 @@
+body{
+	background: #e2e2e2!important;
+}
+.bg-primary{
+	background:#000000 !important;
+	color: white;
+}
+.banner{
+	width:100%;
+	height:93vh;
+	background: linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.85)),url(../img/t1.jpg);
+	background-size:cover;
+	color:white;
+/* 	display: flex; */
+}
+.my-card{
+	padding:20px;
+	background:#FFFFFF;
+	
+}
+#btn
+{
+	  font-family: "Raleway", sans-serif;
+      text-transform: uppercase;
+	  font-weight: 400;
+	  font-size: 14px;
+	  letter-spacing: 1px;
+	  display: inline-block;
+	  padding: 12px 40px;
+	  border-radius: 50px;
+	  transition: 0.5s;
+	  margin-top: px;
+	   color: #fff;
+     background: #34b7a7;
+}
+#btn:hover{
+	  background:black;
+}
+#footer {
+  background:linear-gradient(rgba(0,0,0,.9),rgba(0,0,0,.85)),url(../img/t1.jpg);
+  padding: 10px 0;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  border: none;
+}
+
+#footer .credits {
+  padding-top: 5px;
+  font-size: 13px;
+}
+
+#footer .credits a {
+  color: #34b7a7;
+}
+
