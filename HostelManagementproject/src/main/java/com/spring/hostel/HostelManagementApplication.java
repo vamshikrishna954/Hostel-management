@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.spring.hostel.repository.RoomBedInformationDao;
 
 
-
+//sample
 @SpringBootApplication
 public class HostelManagementApplication implements CommandLineRunner{
 
